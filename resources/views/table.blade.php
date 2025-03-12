@@ -1,0 +1,41 @@
+@extends('layout.tamplate')
+
+@section('content')
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Nama</th>
+                <th>NIM</th>
+                <th>Kelas</th>
+            </tr>
+        </thead>
+
+        <body>
+            <tr>
+                <td>1</td>
+                <td>Zahra</td>
+                <td>1111</td>
+                <td>A</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Allya</td>
+                <td>1112</td>
+                <td>A</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Ana</td>
+                <td>1113</td>
+                <td>B</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Cici</td>
+                <td>1114</td>
+                <td>B</td>
+            </tr>
+        </body>
+    </table>
+@endsection
