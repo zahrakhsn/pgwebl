@@ -12,6 +12,7 @@
 
     @yield('styles')
 
+
 </head>
 
 <body>
@@ -24,6 +25,8 @@
     </script>
 
     @yield('scripts')
+
+    @include('components.toast')
 
 </body>
 
