@@ -16,53 +16,68 @@
 @section('content')
     <div id="map"></div>
 
-    <!-- Modal Create Point -->
-    <div class="modal fade" id="createpointModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Create Point</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form method="POST" action="{{ route('points.store') }}" enctype="multipart/form-data">
-                    <div class="modal-body">
-
-                        @csrf
-
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" name="name"
-                                placeholder="Fill point name" required>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="description" class="form-label">Description</label>
-                            <textarea class="form-control" id="description" name="description" rows="3"></textarea>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="geom_point" class="form-label">Geometry</label>
-                            <textarea class="form-control" id="geom_point" name="geom_point" rows="3"></textarea>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="image" class="form-label">Photo</label>
-                            <input type="file" class="form-control" id="image_point" name="image"
-                                onchange="document.getElementById('preview-image-point').src = window.URL.createObjectURL(this.files[0])">
-                            <img src="" alt="" id="preview-image-point" class="img-thumbnail"
-                                width="300">
-                        </div>
-
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save</button>
-                    </div>
-                </form>
+  <!-- Modal Create Point -->
+<div class="modal fade" id="createpointModal" tabindex="-1" aria-labelledby="createpointModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+        <div class="modal-content shadow-lg border-0 rounded-3">
+            <!-- Header -->
+            <div class="modal-header bg-primary text-white py-2">
+                <h6 class="modal-title" id="createpointModalLabel">
+                    <i class="fa-solid fa-map-location-dot me-2"></i>Tambah Titik Wisata
+                </h6>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+
+            <!-- Body -->
+            <form method="POST" action="{{ route('points.store') }}" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-body" style="background-color: #b0d0f0; padding: 1rem 1.25rem;">
+                    <!-- Name -->
+                    <div class="mb-2">
+                        <label for="name" class="form-label fw-semibold mb-1">Nama Titik</label>
+                        <input
+                            type="text" class="form-control form-control-sm shadow-sm" id="name" name="name" placeholder="Masukkan nama lokasi" required>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="mb-2">
+                        <label for="description" class="form-label fw-semibold mb-1">Deskripsi</label>
+                        <textarea class="form-control form-control-sm shadow-sm" id="description" name="description" rows="2" placeholder="Jelaskan lokasi wisata Anda"></textarea>
+                    </div>
+
+                    <!-- Geometry -->
+                    <div class="mb-2">
+                        <label for="geom_point" class="form-label fw-semibold mb-1">Koordinat</label>
+                        <textarea class="form-control form-control-sm shadow-sm" id="geom_point" name="geom_point" rows="2" placeholder="POINT(119.4375 -5.1234)"></textarea>
+                        <small class="text-muted">Format: POINT(lon lat)</small>
+                    </div>
+
+                    <!-- Photo -->
+                    <div class="mb-2">
+                        <label for="image_point" class="form-label fw-semibold mb-1">Foto Lokasi</label>
+                        <input
+                            type="file" class="form-control form-control-sm shadow-sm" id="image_point" name="image"
+                            accept="image/*" onchange="document.getElementById('preview-image-point').src = window.URL.createObjectURL(this.files[0])">
+
+                        <!-- Preview -->
+                        <div class="mt-2 text-center">
+                            <img src="" id="preview-image-point" class="img-thumbnail rounded shadow-sm" style="max-width: 100%; max-height: 150px;" alt="Preview Gambar">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <div class="modal-footer border-0" style="background-color: #9ebbd8; padding: 0.5rem 1rem;">
+                    <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-sm btn-success px-3">
+                        <i class="fa-solid fa-save me-1"></i> Simpan
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
+</div>
+
 
     <!-- Modal Create Polyline -->
     <div class="modal fade" id="createpolylineModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -174,7 +189,7 @@
     <script src="https://unpkg.com/@terraformer/wkt"></script>
 
     <script>
-        var map = L.map('map').setView([-6.9026463, 107.6187751], 14);
+        var map = L.map('map').setView([-5.139524125871571, 119.45240437230198], 13);
 
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
